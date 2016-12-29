@@ -1,3 +1,8 @@
+/*
+ Example file for making a fetch() request - assuming the existence of proxy server.
+ Therefore the call does not include the URL.
+ This solves the CORS (cross-origin resource sharing) problem - which most browsers block.
+ */
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;

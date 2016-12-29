@@ -1,21 +1,23 @@
 'use strict';
 
 const express = require('express');
-const fs = require('fs');
-const sqlite = require('sql.js');
-
-const filebuffer = fs.readFileSync('db/usda-nnd.sqlite3');
-
-const db = new sqlite.Database(filebuffer);
 
 const app = express();
 
+// set port number
 app.set('port', (process.env.PORT || 3001));
 
-// Express only serves static assets in production
+// express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
+
+
+/*  example code for making a proxy API call.
+ const fs = require('fs');
+ const filebuffer = fs.readFileSync('db/usda-nnd.sqlite3');
+ const sqlite = require('sql.js');
+ const db = new sqlite.Database(filebuffer);
 
 const COLUMNS = [
   'carbohydrate_g',
@@ -67,6 +69,8 @@ app.get('/api/food', (req, res) => {
     res.json([]);
   }
 });
+*/
+
 
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
