@@ -22,7 +22,7 @@ class PeopleContainer extends Component {
       <div>
         <PersonInput addPerson={this.props.actions.addPerson} />
         <PeopleList people={people} />
-        <button onClick={this.props.actions.clearPerson} />
+        <button onClick={this.props.actions.clearPerson}>Clear</button>
       </div>
     );
   }
@@ -30,8 +30,8 @@ class PeopleContainer extends Component {
 
 // there are two elements in props - people and actions
 PeopleContainer.propTypes = {
-  people: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired,
+  people: PropTypes.array,
+  actions: PropTypes.object,
 };
 
 // indicate that the state's people is equal to the prop's people
