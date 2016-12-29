@@ -1,6 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 
 class PersonInput extends Component {
+  static componentDidMount() {
+    document.getElementById('firstname').focus();
+  }
+
   constructor(props) {
     super(props);
 
@@ -22,10 +26,6 @@ class PersonInput extends Component {
     firstNameElement.focus();
   }
 
-  componentDidMount() {
-    document.getElementById('firstname').focus();
-  }
-
   render() {
     return (
       <div>
@@ -38,7 +38,7 @@ class PersonInput extends Component {
 }
 
 PersonInput.propTypes = {
-  addPerson: PropTypes.func.isRequired
+  addPerson: PropTypes.func.isRequired,
 };
 
 export default PersonInput;

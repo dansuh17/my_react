@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as peopleActions from '../actions/people-actions';
 import PeopleList from './PeopleList';
 import PersonInput from './PersonInput';
@@ -16,7 +16,7 @@ class PeopleContainer extends Component {
   }
 
   render() {
-    const {people} = this.props;  // connected to the state
+    const { people } = this.props;  // connected to the state
 
     return (
       <div>
@@ -30,22 +30,24 @@ class PeopleContainer extends Component {
 
 // there are two elements in props - people and actions
 PeopleContainer.propTypes = {
-  people: PropTypes.array,
-  actions: PropTypes.object,
+  people: PropTypes.arrayOf(PropTypes.shape({
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+  })),
+  actions: PropTypes.shape({
+    addPerson: PropTypes.func,
+    clearPerson: PropTypes.func,
+  }),
 };
 
 // indicate that the state's people is equal to the prop's people
-const mapStateToProps = (state, props) => {
-  return {
-    people: state.people,
-  }
-};
+const mapStateToProps = state => ({
+  people: state.people,
+});
 
 // indicate that the imported actions (peopleActions) are equal to prop's actions
-const mapDispatchToProps = (dispatch) => {
-  return {
-    actions: bindActionCreators(peopleActions, dispatch),
-  }
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(peopleActions, dispatch),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PeopleContainer);

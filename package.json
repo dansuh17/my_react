@@ -23,6 +23,14 @@
     "client": "babel-node start-client.js"
   },
   "devDependencies": {
-    "concurrently": "^3.1.0"
+    "concurrently": "^3.1.0",
+    "eslint": "^3.12.2",
+    "eslint-plugin-node": "^3.0.5"
+  },
+  "eslintConfig": {
+    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "rules": {
+      "node/exports-style": ["error", "module.exports"]
+    }
   }
 }
