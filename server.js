@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
@@ -9,9 +10,9 @@ app.set('port', (process.env.PORT || 3001));
 
 // express only serves static assets in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  const buildPath = path.join(__dirname, 'client', 'build');
+  app.use(express.static(buildPath));
 }
-
 
 /*  example code for making a proxy API call.
  const fs = require('fs');
@@ -70,7 +71,6 @@ app.get('/api/food', (req, res) => {
   }
 });
 */
-
 
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
